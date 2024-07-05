@@ -1,56 +1,56 @@
-import enum
-
 import bext
 import time
 
+import addons
+
 
 def main():
-    demo()
-
-
-class Direction(enum.Enum):
-    Left = -1
-    Right = 1
+    bext.hide_cursor()
+    bext.clear()
+    while True:
+        quote = addons.get_random_motivational_quote()
+        render(f'"{quote.quote}" — {quote.author}')
 
 
 def demo():
     text = "Hello, World! 🌎"
-    width = bext.width()
     bext.hide_cursor()
     bext.clear()
-    scroll_till_edge(text, width, direction=Direction.Right)
-    scroll_beyond_edge(text, width, direction=Direction.Right)
+    render(text)
     time.sleep(1)
     bext.show_cursor()
 
 
-def scroll_till_edge(text, width, *, direction=Direction.Left):
-    # Animate the text
-    for i in range(width - len(text)):
-        bext.goto(0, 0)
-        # print(' ' * (width - i) + text[:i])
-        if direction == Direction.Left:
-            print(text.rjust(width-i, ' '))
-        else:
-            print(text.rjust(len(text)+i, ' '))
+def scroll_from_beyond_right_to_beyond_left(text, width):
+    text = text.strip() + ' '  # hack
+    left_edge_x = width
+    right_x = -len(text)
 
-        # ensure next line is clear
-        bext.goto(0, 1)
-        print(' '*width)
+    for i in range(len(text) + width):
+        bext.goto(0, 0)
+
+        left_space = ' ' * max(left_edge_x - i, 0)
+        right_space = ' ' * max(right_x, 0)
+        start_index = max(-left_edge_x + i, 0)
+
+        s = left_space + text[start_index:i] + right_space
+        print(s)
 
         time.sleep(DELAY_SECONDS)
 
 
-def scroll_beyond_edge(text, width, *, direction=Direction.Right):
-    for i in range(1, len(text) + 1):
-        bext.goto(0, 0)
-        if direction == Direction.Left:
-            print(text[i:].ljust(width, ' '))
-        else:
-            print(text[:-i].rjust(width, ' '))
-        time.sleep(DELAY_SECONDS)
+def render(s: str):
+    scroll_from_beyond_right_to_beyond_left(s, bext.width())
+    # scroll_till_edge(s, bext.width())
+    # scroll_beyond_edge(s, bext.width())
+    time.sleep(1)
+
+
+DELAY_SECONDS = 0.1
 
 
 if __name__ == '__main__':
-    DELAY_SECONDS = 0.1
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        bext.show_cursor()
