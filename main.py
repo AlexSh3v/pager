@@ -1,3 +1,5 @@
+import random
+
 import bext
 import time
 
@@ -8,9 +10,12 @@ def main():
     bext.hide_cursor()
     bext.clear()
     while True:
-        quote = addons.get_random_motivational_quote()
-        render(f'"{quote.quote}" — {quote.author}')
-
+        picked_function = random.choice(addons.functions)
+        if picked_function == addons.get_random_motivational_quote:
+            quote = picked_function()
+            render(f'"{quote.quote}" — {quote.author}')
+        elif picked_function == addons.get_random_programming_joke:
+            render(picked_function())
 
 def demo():
     text = "Hello, World! 🌎"

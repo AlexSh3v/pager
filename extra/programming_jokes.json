@@ -1,0 +1,202 @@
+[
+  {
+    "id": 1,
+    "joke": "Why do programmers prefer dark mode? Because light attracts bugs."
+  },
+  {
+    "id": 2,
+    "joke": "I told my code to 'just wing it' and now it's a mess."
+  },
+  {
+    "id": 3,
+    "joke": "What's the difference between a programmer and a software engineer? One has a degree, the other has a GitHub account."
+  },
+  {
+    "id": 4,
+    "joke": "I'm not arguing, I'm just explaining why my code is better."
+  },
+  {
+    "id": 5,
+    "joke": "Why do programmers prefer coffee? Because it's the only thing that can debug their morning."
+  },
+  {
+    "id": 6,
+    "joke": "I've been coding for hours and I think I've finally found the problem: it's the user."
+  },
+  {
+    "id": 7,
+    "joke": "What's the most used language in programming? Profanity."
+  },
+  {
+    "id": 8,
+    "joke": "I'm not lazy, I'm just on energy-saving mode... like my code."
+  },
+  {
+    "id": 9,
+    "joke": "Why do programmers love pizza? Because it's the only thing that can be delivered in under 30 minutes."
+  },
+  {
+    "id": 10,
+    "joke": "I've been trying to debug my code for hours, but I think I need to take a step back and refactor my life."
+  },
+  {
+    "id": 11,
+    "joke": "What's the difference between a programmer and a magician? One makes things disappear, the other makes bugs appear."
+  },
+  {
+    "id": 12,
+    "joke": "I've been coding for so long, I've started to think in binary."
+  },
+  {
+    "id": 13,
+    "joke": "Why do programmers prefer Linux? Because it's the only OS that doesn't judge them for their life choices."
+  },
+  {
+    "id": 14,
+    "joke": "I'm not arguing, I'm just passionately expressing my point of view while completely dismissing yours."
+  },
+  {
+    "id": 15,
+    "joke": "What's the most popular programming language? JavaScript... just kidding, it's still COBOL."
+  },
+  {
+    "id": 16,
+    "joke": "I've been trying to optimize my code, but I think I need to optimize my procrastination skills first."
+  },
+  {
+    "id": 17,
+    "joke": "Why do programmers love Agile? Because it's the only methodology that allows them to procrastinate in sprints."
+  },
+  {
+    "id": 18,
+    "joke": "I've been coding for so long, I've started to think that indentation is a lifestyle."
+  },
+  {
+    "id": 19,
+    "joke": "What's the difference between a programmer and a project manager? One has a deadline, the other has a delusion."
+  },
+  {
+    "id": 20,
+    "joke": "I'm not lazy, I'm just on 'infinite loop' mode."
+  },
+  {
+    "id": 21,
+    "joke": "Why do programmers prefer Stack Overflow? Because it's the only place where they can ask for help without feeling judged."
+  },
+  {
+    "id": 22,
+    "joke": "I've been trying to debug my code, but I think I need to debug my life first."
+  },
+  {
+    "id": 23,
+    "joke": "What's the most popular programming joke? Why do programmers prefer dark mode? (Just kidding, it's still a joke in development.)"
+  },
+  {
+    "id": 24,
+    "joke": "I've been coding for so long, I've started to think that semicolons are a form of punctuation."
+  },
+  {
+    "id": 25,
+    "joke": "Why do programmers love open-source? Because it's the only way they can get away with stealing code."
+  },
+  {
+    "id": 26,
+    "joke": "I'm not arguing, I'm just explaining why my code is better... again."
+  },
+  {
+    "id": 27,
+    "joke": "What's the difference between a programmer and a data scientist? One has data, the other has an opinion."
+  },
+  {
+    "id": 28,
+    "joke": "I've been trying to optimize my code, but I think I need to optimize my coffee intake first."
+  },
+  {
+    "id": 29,
+    "joke": "Why do programmers prefer coding at night? Because it's the only time they can avoid human interaction."
+  },
+  {
+    "id": 30,
+    "joke": "I've been coding for so long, I've started to think that code reviews are a form of therapy."
+  },
+  {
+    "id": 31,
+    "joke": "Why do programmers prefer coding in teams? Because it's the only way they can blame someone else for their mistakes."
+  },
+  {
+    "id": 32,
+    "joke": "I've been trying to debug my code, but I think I need to debug my Google search skills first."
+  },
+  {
+    "id": 33,
+    "joke": "What's the most popular programming language? Whatever one I'm not using."
+  },
+  {
+    "id": 34,
+    "joke": "I'm not arguing, I'm just explaining why my code is better... for the 12th time."
+  },
+  {
+    "id": 35,
+    "joke": "Why do programmers love coding challenges? Because it's the only way they can prove they're better than others."
+  },
+  {
+    "id": 36,
+    "joke": "I've been coding for so long, I've started to think that code smells are a real thing."
+  },
+  {
+    "id": 37,
+    "joke": "What's the difference between a programmer and a software architect? One has a vision, the other has a Powerpoint presentation."
+  },
+  {
+    "id": 38,
+    "joke": "I've been trying to optimize my code, but I think I need to optimize my excuses first."
+  },
+  {
+    "id": 39,
+    "joke": "Why do programmers prefer coding in silence? Because it's the only way they can hear their own thoughts... and ignore everyone else's."
+  },
+  {
+    "id": 40,
+    "joke": "I'm not lazy, I'm just on 'code freeze' mode."
+  },
+  {
+    "id": 41,
+    "joke": "What's the most popular programming tool? The 'undo' button."
+  },
+  {
+    "id": 42,
+    "joke": "I've been coding for so long, I've started to think that coding standards are a myth."
+  },
+  {
+    "id": 43,
+    "joke": "Why do programmers love coding at 3 AM? Because it's the only time they can avoid meetings."
+  },
+  {
+    "id": 44,
+    "joke": "I've been trying to debug my code, but I think I need to debug my sleep schedule first."
+  },
+  {
+    "id": 45,
+    "joke": "What's the difference between a programmer and a DevOps engineer? One writes code, the other writes excuses."
+  },
+  {
+    "id": 46,
+    "joke": "I'm not arguing, I'm just explaining why my code is better... while completely ignoring your point."
+  },
+  {
+    "id": 47,
+    "joke": "Why do programmers prefer coding in coffee shops? Because it's the only place where they can get a caffeine high and a Wi-Fi low."
+  },
+  {
+    "id": 48,
+    "joke": "I've been coding for so long, I've started to think that code reviews are a form of torture."
+  },
+  {
+    "id": 49,
+    "joke": "What's the most popular programming language? Whatever one is trending on GitHub."
+  },
+  {
+    "id": 50,
+    "joke": "I've been trying to optimize my code, but I think I need to optimize my procrastination skills first... again."
+  }
+]
