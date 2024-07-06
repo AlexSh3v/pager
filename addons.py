@@ -2,6 +2,7 @@ import dataclasses
 import datetime
 import json
 import pathlib
+import secrets
 import random
 import time
 
@@ -9,6 +10,8 @@ extra_dir = pathlib.Path(__file__).parent / 'extra'
 
 motivational_quotes_path = extra_dir / 'motivational_quotes.json'
 programming_jokes_path = extra_dir / 'programming_jokes.json'
+physical_challenges_path = extra_dir / 'physical_challenges.json'
+call_to_action_path = extra_dir / 'call_to_action.json'
 
 
 @dataclasses.dataclass(frozen=True)
@@ -54,19 +57,39 @@ class TimeReminder:
 def get_random_motivational_quote() -> MotivationalQuote:
     with motivational_quotes_path.open() as json_file:
         quotes = json.load(json_file)
-    data = random.choice(quotes)
-    emoji = random.choice('⚡️🔥🌟💪')
-    return MotivationalQuote(data['text'] + ' ' + emoji, data['from'])
+    data = secrets.choice(quotes)
+    emoji = secrets.choice(['⚡️', '🔥', '🌟' '💪'])
+    return MotivationalQuote(emoji + ' ' + data['text'], data['from'])
 
 
 def get_random_programming_joke() -> str:
     with programming_jokes_path.open() as json_file:
         jokes = json.load(json_file)
-    data = random.choice(jokes)
+    data = secrets.choice(jokes)
     joke = ProgrammingJoke(data['joke'])
     if joke.is_start_with_question():
         return 'Wait! Do you know ' + joke.text[0].lower() + joke.text[1:] + ' ' + '😂'
     return joke.text + ' 😂'
+
+
+@dataclasses.dataclass(frozen=True)
+class PhysicalChallenge:
+    text: str
+    call_to_action: list[int]
+
+    def repeat(self):
+        for call in self.call_to_action:
+            yield f'💪 {call}: {self.text}'
+
+
+def get_random_physical_challenge() -> PhysicalChallenge:
+    with physical_challenges_path.open() as json_file:
+        data = json.load(json_file)
+    with call_to_action_path.open() as json_file:
+        calls = json.load(json_file)
+    challenge = PhysicalChallenge(secrets.choice(data),
+                                  [secrets.choice(calls) for _ in range(5)])
+    return challenge
 
 
 functions = [
