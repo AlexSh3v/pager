@@ -128,6 +128,7 @@ PHYSICAL_REMINDER_RANGE_MINUTES = (5, 7)
 settings = addons.Settings.load()
 
 if __name__ == '__main__':
+    bext.title('Pager')
     try:
         main()
     except KeyboardInterrupt:
