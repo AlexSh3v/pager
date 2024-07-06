@@ -6,6 +6,8 @@ import secrets
 import random
 import time
 
+import requests
+
 extra_dir = pathlib.Path(__file__).parent / 'extra'
 
 motivational_quotes_path = extra_dir / 'motivational_quotes.json'
@@ -58,7 +60,7 @@ def get_random_motivational_quote() -> MotivationalQuote:
     with motivational_quotes_path.open() as json_file:
         quotes = json.load(json_file)
     data = secrets.choice(quotes)
-    emoji = secrets.choice(['⚡️', '🔥', '🌟' '💪'])
+    emoji = secrets.choice(['⚡️', '🔥', '🌟', '💪'])
     return MotivationalQuote(emoji + ' ' + data['text'], data['from'])
 
 
@@ -92,7 +94,37 @@ def get_random_physical_challenge() -> PhysicalChallenge:
     return challenge
 
 
+def get_exchange_rate():
+    s = 'Exchange rate for today: $1 = {}₽,   1€ = {}₽,   1₿ = {}₽ !'
+
+    def parse_float(it: str):
+        if it.replace('.', '').isdigit():
+            num = round(float(it), 2)
+            formatted_num = '{:,.2f}'.format(num).replace(',', ' ')
+            return formatted_num
+        return it
+
+    def extract_ruble(from_currency: str, s) -> str:
+        url = f'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/{from_currency}.json'
+        try:
+            response = requests.get(url, timeout=2)
+        except requests.ReadTimeout:
+            return ''
+        if response.ok:
+            ruble = response.json(parse_float=parse_float)[from_currency]['rub']
+            return s.format(ruble)
+        return ''
+
+    currencies = ',   '.join(filter(lambda it: len(it) > 0, [
+        extract_ruble('usd', '$1 = {}₽'),
+        extract_ruble('eur', '1€ = {}₽'),
+        extract_ruble('btc', '1₿ = {}₽'),
+    ]))
+    return '🏦 Exchange rate for today: {}'.format(currencies)
+
+
 functions = [
     get_random_motivational_quote,
     get_random_programming_joke,
+    get_exchange_rate,
 ]

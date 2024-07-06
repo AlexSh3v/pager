@@ -1,4 +1,5 @@
 import random
+import secrets
 import typing
 
 import bext
@@ -62,10 +63,13 @@ def main():
             physical_activity.new()
 
         picked_function = random.choice(addons.functions)
+        chance_10_percent = secrets.randbelow(10) == 0
         if picked_function == addons.get_random_motivational_quote:
             quote = picked_function()
             render(f'"{quote.quote}" — {quote.author}')
         elif picked_function == addons.get_random_programming_joke:
+            render(picked_function())
+        elif picked_function == addons.get_exchange_rate and chance_10_percent:
             render(picked_function())
 
 
