@@ -6,6 +6,7 @@ import secrets
 import random
 import time
 
+import humanize
 import requests
 
 extra_dir = pathlib.Path(__file__).parent / 'extra'
@@ -14,6 +15,12 @@ motivational_quotes_path = extra_dir / 'motivational_quotes.json'
 programming_jokes_path = extra_dir / 'programming_jokes.json'
 physical_challenges_path = extra_dir / 'physical_challenges.json'
 call_to_action_path = extra_dir / 'call_to_action.json'
+
+temp_dir = extra_dir.parent / 'temp'
+temp_dir.mkdir(exist_ok=True)
+settings_path = temp_dir / 'settings.json'
+if not settings_path.exists():
+    settings_path.write_text('{}')
 
 
 @dataclasses.dataclass(frozen=True)
@@ -108,7 +115,7 @@ def get_exchange_rate():
         url = f'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/{from_currency}.json'
         try:
             response = requests.get(url, timeout=2)
-        except requests.ReadTimeout:
+        except (requests.ReadTimeout, requests.exceptions.ConnectionError):
             return ''
         if response.ok:
             ruble = response.json(parse_float=parse_float)[from_currency]['rub']
@@ -121,6 +128,56 @@ def get_exchange_rate():
         extract_ruble('btc', '1₿ = {}₽'),
     ]))
     return '🏦 Exchange rate for today: {}'.format(currencies)
+
+
+@dataclasses.dataclass
+class Settings:
+    last_login: datetime.datetime
+
+    @classmethod
+    def default(cls):
+        return cls(
+            last_login=datetime.datetime.now(),
+        )
+
+    def __post_init__(self):
+        # INIT
+        if isinstance(self.last_login, str):
+            self.last_login = datetime.datetime.fromisoformat(self.last_login)
+
+    def get_serializable_data(self) -> dict:
+        # CONVERTING
+        d: dict = dataclasses.asdict(self)
+        d.update({
+            'last_login': self.last_login.isoformat(),
+        })
+        return d
+
+    def save(self):
+        with open(settings_path, 'w') as json_file:
+            data = self.get_serializable_data()
+            json.dump(data, json_file, indent=4, ensure_ascii=False)
+
+    @classmethod
+    def load(cls):
+        with open(settings_path) as json_file:
+            data = json.load(json_file)
+        try:
+            inst = cls(**data)
+        except TypeError:
+            inst = cls.default()
+        except json.JSONDecodeError:
+            print(f'[JSON] ERROR PARSING {settings_path.name}. CHECK FILE')
+            exit(1)
+        return inst
+
+    @property
+    def welcome_message(self) -> str:
+        now = datetime.datetime.now()
+        time_ago = humanize.naturaltime(now - self.last_login)
+        if time_ago == 'now':
+            return f'👋 Welcome! Enjoy your time here.'
+        return f'👋 Welcome back! You were here last time {time_ago}. Enjoy your time here.'
 
 
 functions = [

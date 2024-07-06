@@ -1,3 +1,4 @@
+import datetime
 import random
 import secrets
 import typing
@@ -48,6 +49,9 @@ def main():
     bext.hide_cursor()
     bext.clear()
     time_reminder = addons.TimeReminder(*TIME_REMINDER_RANGE_SECONDS)
+
+    render(settings.welcome_message)
+
     converted = (it*60 for it in PHYSICAL_REMINDER_RANGE_MINUTES)
     physical_activity = addons.TimeReminder(*converted)
     while True:
@@ -121,9 +125,12 @@ def render(s: str | typing.Callable[[], str]):
 DELAY_SECONDS = 0.1
 TIME_REMINDER_RANGE_SECONDS = (60, 80)
 PHYSICAL_REMINDER_RANGE_MINUTES = (5, 7)
+settings = addons.Settings.load()
 
 if __name__ == '__main__':
     try:
         main()
     except KeyboardInterrupt:
         bext.show_cursor()
+        settings.last_login = datetime.datetime.now()
+        settings.save()
