@@ -19,10 +19,6 @@ With Pager, you'll be treated to a mesmerizing display of text messages that scr
 
 **How to Use Pager**: Simply run the `main.py` script, and Pager will take care of the rest. You can customize the experience by modifying the settings and adding your own features.
 
-**Get Started Today!**: Clone this repository, install the required libraries, and start enjoying the Pager experience.
-
-I hope you like it! Let me know if you need any further assistance.
-
 ---
 
 **Resources I Used By People**:
